@@ -17,7 +17,7 @@ NOISE_TOMOGRAPHY                = 0
 SAVE_FORWARD                    = .false.
 
 # parameters concerning partitioning
-NPROC                           = 1              # number of processes
+NPROC                           = 16              # number of processes
 
 # time step parameters
 # total number of time steps
@@ -244,7 +244,7 @@ PERIODIC_HORIZ_DIST             = 4000.d0
 #-----------------------------------------------------------
 
 # number of model materials
-nbmodels                        = 4
+nbmodels                        = 2
 # available material types (see user manual for more information)
 #   acoustic:              model_number 1 rho Vp 0  0 0 QKappa 9999 0 0 0 0 0 0 (for QKappa use 9999 to ignore it)
 #   elastic:               model_number 1 rho Vp Vs 0 0 QKappa Qmu  0 0 0 0 0 0 (for QKappa and Qmu use 9999 to ignore them)
@@ -261,9 +261,9 @@ nbmodels                        = 4
 #       To convert one to the other see doc/Qkappa_Qmu_versus_Qp_Qs_relationship_in_2D_plane_strain.pdf and
 #       utils/attenuation/conversion_from_Qkappa_Qmu_to_Qp_Qs_from_Dahlen_Tromp_959_960.f90.
 1 1 2700.d0 3000.d0 1732.051d0 0 0 9999 9999 0 0 0 0 0 0
-2 1 2500.d0 2700.d0 0 0 0 9999 9999 0 0 0 0 0 0
-3 1 2200.d0 2500.d0 1443.375d0 0 0 9999 9999 0 0 0 0 0 0
-4 1 2200.d0 2200.d0 1343.375d0 0 0 9999 9999 0 0 0 0 0 0
+#2 1 2500.d0 2700.d0 0 0 0 9999 9999 0 0 0 0 0 0
+#3 1 2200.d0 2500.d0 1443.375d0 0 0 9999 9999 0 0 0 0 0 0
+2 1 2200.d0 2200.d0 1343.375d0 0 0 9999 9999 0 0 0 0 0 0
 
 # external tomography file
 TOMOGRAPHY_FILE                 = ./DATA/tomo_file.xyz
@@ -310,13 +310,20 @@ absorbtop                       = .false.
 absorbleft                      = .true.
 
 # define the different regions of the model in the (nx,nz) spectral-element mesh
-nbregions                       = 5              # then set below the different regions and model number for each region
+nbregions                       = 12              # then set below the different regions and model number for each region
 # format of each line: nxmin nxmax nzmin nzmax material_number
-1 80  1 20 1
-1 59 21 40 2
-71 80 21 40 2
-1 80 41 60 3
-60 70 21 40 4
+1 20  1 20 1
+1 20 21 40 2
+1 20 41 60 1
+21 40  1 20 2
+21 40 21 40 1
+21 40 41 60 2
+41 60  1 20 1
+41 60 21 40 2
+41 60 41 60 1
+61 80  1 20 2
+61 80 21 40 1
+61 80 41 60 2
 
 #-----------------------------------------------------------
 #
